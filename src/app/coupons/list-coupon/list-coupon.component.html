@@ -1,1 +1,29 @@
-<p>list-coupon works!</p>
+<mat-paginator
+  style="height: 34px; margin: 0 0 0 0;"
+  [length]="coupons.length"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="onPageChanged($event)">
+</mat-paginator>
+
+<div style="height: 400px; overflow-y: scroll;">
+  <mat-card *ngFor="let coupon of getCouponsForCurrentPage(); let i = index"
+    style="margin-bottom: 10px;">
+    <mat-card-header>
+      <mat-slide-toggle [(ngModel)]="editStates[i]" color="primary" style="width: 40%;">Edit coupon</mat-slide-toggle>
+    </mat-card-header>
+    <mat-card-content>
+      <h2 style="color: #8BC34A; margin: 10px 0 0 0;">#{{ coupon.id }}</h2>
+      <mat-form-field [style.width.px]=400>
+        <mat-label>Code: {{ coupon.code }}</mat-label>
+        <input #input matInput placeholder="{{ coupon.code }}" required [disabled]="!editStates[i]">
+        <mat-error *ngIf="!coupon.code">You must enter a value</mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button color="warn" (click)="delete(coupon)" mat-button>delete coupon</button>
+      <button color="primary" (click)="update(coupon)" [disabled]="!editStates[i]" mat-button>save changes</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
