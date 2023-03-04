@@ -16,6 +16,7 @@ export class ListCouponComponent implements OnInit {
 
   editStates: boolean[] = [];
   coupons: Coupon[] = [];
+
   pageSize = 5;
   pageIndex = 0;
   pageSizeOptions: number[] = [5];
@@ -58,8 +59,7 @@ export class ListCouponComponent implements OnInit {
   }
 
   update(coupon: Coupon): void {
-    this.updatedCoupon.id = coupon.id
-    this.updatedCoupon.code = this.myInput.nativeElement.value;
+    this.updatedCoupon.id = coupon.id;
     this.couponService.update(this.updatedCoupon)
           .subscribe(response => {
             this.coupons = response;
