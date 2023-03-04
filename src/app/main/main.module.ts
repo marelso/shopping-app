@@ -1,3 +1,5 @@
+import { CouponsModule } from './../coupons/coupons.module';
+import { CouponsComponent } from './../coupons/coupons.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -19,7 +21,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatCardModule,
     MatIconModule,
     MatBottomSheetModule,
-    MatButtonModule
+    MatButtonModule,
+    CouponsModule
   ]
 })
 export class MainModule { }
