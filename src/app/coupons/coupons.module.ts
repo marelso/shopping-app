@@ -4,15 +4,18 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { CouponsComponent } from './coupons.component';
 import { CreateCouponComponent } from './create-coupon/create-coupon.component';
+import { ListCouponComponent } from './list-coupon/list-coupon.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
     CouponsComponent,
-    CreateCouponComponent
+    CreateCouponComponent,
+    ListCouponComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatPaginatorModule
   ]
 })
 export class CouponsModule { }
