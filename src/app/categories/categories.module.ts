@@ -15,12 +15,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { DeleteCategoryComponent } from './delete-category/delete-category.component';
+import { UpdateCategoryComponent } from './update-category/update-category.component';
 
 @NgModule({
   declarations: [
     CategoriesComponent,
     CreateCategoryComponent,
-    ListCategoryComponent
+    ListCategoryComponent,
+    DeleteCategoryComponent,
+    UpdateCategoryComponent
   ],
   imports: [
     CommonModule,
