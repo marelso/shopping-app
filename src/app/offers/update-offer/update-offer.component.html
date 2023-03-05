@@ -1,1 +1,59 @@
-<p>update-offer works!</p>
+<h1 mat-dialog-title>Are you absolutely sure?</h1>
+<div mat-dialog-content>
+  <p>You can fill in the offer details.</p> <br>
+
+  <mat-form-field appearance="fill" [style.width.px]=500>
+    <mat-label>Choose offer title</mat-label>
+    <input matInput [(ngModel)]="updatedOffer.title" placeholder="Enter offer title...">
+  </mat-form-field> <br>
+
+  <mat-form-field appearance="fill"  [style.width.px]=500>
+    <mat-label>Enter a description for the offer</mat-label>
+    <textarea matInput [(ngModel)]="updatedOffer.description" placeholder="Enter any description for offer..."></textarea>
+  </mat-form-field> <br>
+
+  <mat-form-field appearance="fill" [style.width.px]=500>
+    <mat-label>Enter any price for the offer</mat-label>
+    <input matInput type="number" placeholder="Offer price..." [(ngModel)]="updatedOffer.price">
+  </mat-form-field> <br>
+
+  <form [formGroup]="categoryStep">
+    <mat-form-field appearance="fill">
+      <mat-label>Select any categories</mat-label>
+      <mat-chip-grid required #chipGrid aria-label="Fruit selection">
+        <mat-chip-row *ngFor="let category of selectedCategories" (removed)="remove(category)">
+          {{ category }}
+          <button matChipRemove [attr.aria-label]="'remove ' + category">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input placeholder="Include in..." #categoryInput formControlName="categoryCtrl"
+        [matChipInputFor]="chipGrid" [matAutocomplete]="categoryAuto"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"/>
+      <mat-autocomplete #categoryAuto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let category of filteredCategories | async" [value]="category">
+          {{ category }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+  <mat-form-field appearance="fill" [style.width.px]=300>
+    <mat-label>Choose any coupon</mat-label>
+    <input placeholder="Select any coupon..." matInput [formControl]="couponCtrl" [matAutocomplete]="autoCoupon">
+    <mat-autocomplete #autoCoupon="matAutocomplete" (optionSelected)="onOptionSelected($event)" [displayWith]="displayCoupon">
+      <mat-option *ngFor="let option of filteredCoupons | async" [value]="option">
+        {{option.code}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-checkbox color="primary" style="margin-left: 40px;" [(ngModel)]="updatedOffer.active">{{updatedOffer.active ? 'Desable offer' : 'Enable offer'}}</mat-checkbox>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="update()" cdkFocusInitial color="primary">Ok</button>
+</div>
