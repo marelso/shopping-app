@@ -1,3 +1,5 @@
+import { Catalog } from './../../models/Catalog';
+import { CatalogService } from './../../services/catalog.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-catalog.component.scss']
 })
 export class CreateCatalogComponent {
+  public panelOpenState = false;
+  public catalog: Catalog = <Catalog>{};
 
+  constructor( private catalogService: CatalogService) {}
+
+  doPost() {
+    this.catalogService.create(this.catalog);
+  }
 }
