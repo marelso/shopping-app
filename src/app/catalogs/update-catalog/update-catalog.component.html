@@ -1,1 +1,16 @@
-<p>update-catalog works!</p>
+<h1 mat-dialog-title>Are you absolutely sure?</h1>
+<div mat-dialog-content>
+  <p>This action cannot be undone. This will update the {{ currentCatalog.name }} catalog.</p>
+  <mat-form-field appearance="fill" [style.width.px]=500>
+    <mat-label>Choose catalog name</mat-label>
+    <input matInput [(ngModel)]="updatedCatalog.name" placeholder="Catalog name">
+  </mat-form-field> <br>
+  <mat-form-field appearance="fill"  [style.width.px]=500>
+    <mat-label>Enter a description for the catalog</mat-label>
+    <textarea matInput [(ngModel)]="updatedCatalog.description" placeholder="Catalog description"></textarea>
+  </mat-form-field> <br>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button color="primary" (click)="update()" cdkFocusInitial>Ok</button>
+</div>
