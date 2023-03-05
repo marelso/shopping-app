@@ -6,6 +6,8 @@ import { CategoriesRoutingModule } from './categories-routing.module';
 import { CategoriesComponent } from './categories.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { ListCategoryComponent } from './list-category/list-category.component';
+import { DeleteCategoryComponent } from './delete-category/delete-category.component';
+import { UpdateCategoryComponent } from './update-category/update-category.component';
 
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,8 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { DeleteCategoryComponent } from './delete-category/delete-category.component';
-import { UpdateCategoryComponent } from './update-category/update-category.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UpdateCategoryComponent } from './update-category/update-category.compo
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ]
 })
 export class CategoriesModule { }
