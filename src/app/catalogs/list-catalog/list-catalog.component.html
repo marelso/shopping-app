@@ -1,0 +1,40 @@
+<div class="card" *ngIf="!filteredCatalogs || filteredCatalogs.length === 0" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div style="display: flex; align-items: center;">
+      <mat-icon color="warn">report_problem</mat-icon>
+      <span style="margin-left: 20px; font-size: larger; font-weight: bolder;">There are no catalogs available at this time.</span>
+    </div>
+  </div>
+
+<form class="card" *ngIf="!filteredCatalogs || filteredCatalogs.length > 0" style="margin-top: 2vh; margin-bottom: 1vh;">
+    <mat-form-field class="example-full-width" appearance="fill" [style.width.px]=800>
+      <mat-label>Search for catalog</mat-label>
+      <input #catalogInput type="text"
+            placeholder="Search for catalog name..."
+            aria-label="Number"
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="auto"
+            (input)="filterCatalogs()">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="filterCatalogs()">
+        <mat-option *ngFor="let option of options" [value]="option" (input)="filterCatalogs()">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  
+  <div class="card" *ngFor="let catalog of filteredCatalogs">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>#{{ catalog.id }} - {{ catalog.name }}
+        </mat-card-title>
+        <mat-card-subtitle>{{ catalog.description }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="openUpdate(catalog)">edit</button>
+        <button mat-button color="warn" (click)="openDelete(catalog)">delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <br>
+  
