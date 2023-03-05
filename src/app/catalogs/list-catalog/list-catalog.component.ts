@@ -71,7 +71,6 @@ export class ListCatalogComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if(result) {
         this.catalogService.update(canBeUpdated)
           .subscribe(catalogs => {
@@ -89,7 +88,6 @@ export class ListCatalogComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       if(result) {
         this.catalogService.delete(canBeDeleted.id)
           .subscribe(catalogs => {
@@ -97,7 +95,6 @@ export class ListCatalogComponent {
             this.filteredCatalogs = catalogs;
             this.options = this.catalogs.map(({ name }) => name);
           });
-        console.log(this.options);
       }
     });
   }
