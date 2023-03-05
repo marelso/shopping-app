@@ -1,1 +1,15 @@
-<p>delete-catalog works!</p>
+<h1 mat-dialog-title>Are you absolutely sure?</h1>
+<div mat-dialog-content>
+  <p>This action cannot be undone. This will permanently delete the {{ data.name }} catalog.</p>
+
+  <mat-form-field appearance="fill" [style.width.px]=400>
+    <mat-label>Please type {{ data.name }} to confirm.</mat-label>
+    <input matInput [(ngModel)]="verifyName" placeholder="{{ data.name }}">
+  </mat-form-field> <br>
+
+  <mat-checkbox [(ngModel)]="checked" color="primary" style="margin-right: 10px;">I want to delete.</mat-checkbox>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button color="primary" (click)="verifyDelete()" cdkFocusInitial>Ok</button>
+</div>
