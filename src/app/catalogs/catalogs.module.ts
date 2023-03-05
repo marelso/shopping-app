@@ -7,6 +7,8 @@ import { CreateCatalogComponent } from './create-catalog/create-catalog.componen
 
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -16,11 +18,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     CatalogsRoutingModule,
     MatExpansionModule,
     MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule
+    MatInputModule,
+    MatButtonModule,
   ]
 })
 export class CatalogsModule { }
