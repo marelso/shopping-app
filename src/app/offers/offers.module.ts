@@ -20,13 +20,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ListOfferComponent } from './list-offer/list-offer.component';
 import { DeleteOfferComponent } from './delete-offer/delete-offer.component';
+import { UpdateOfferComponent } from './update-offer/update-offer.component';
 
 @NgModule({
   declarations: [
     OffersComponent,
     CreateOfferComponent,
     ListOfferComponent,
-    DeleteOfferComponent
+    DeleteOfferComponent,
+    UpdateOfferComponent
   ],
   imports: [
     CommonModule,
