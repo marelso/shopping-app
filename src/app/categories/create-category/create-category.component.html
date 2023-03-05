@@ -1,0 +1,52 @@
+<div class="card center">
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Category
+          </mat-panel-title>
+          <mat-panel-description>
+            {{panelOpenState ? 'Currently creating category' : 'Click to create a new category'}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+  
+        <mat-form-field appearance="fill" [style.width.px]=500>
+          <mat-label>Choose category name</mat-label>
+          <input matInput [(ngModel)]="category.name" placeholder="Catalog name">
+        </mat-form-field> <br>
+  
+        <mat-form-field appearance="fill"  [style.width.px]=500>
+          <mat-label>Enter a description for the category</mat-label>
+          <textarea matInput [(ngModel)]="category.description" placeholder="Catalog description"></textarea>
+        </mat-form-field> <br>
+  
+        <mat-form-field appearance="fill" [style.width.px]=500>
+          <mat-label>Enter an priority level for category</mat-label>
+          <input matInput type="number" placeholder="Priority" [(ngModel)]="category.priority">
+        </mat-form-field> <br>
+  
+        <mat-form-field appearance="fill" [style.width.px]=500>
+          <mat-label>Select any catalog:</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Catalog selection">
+            <mat-chip-row *ngFor="let catalog of selectedCatalogs" (removed)="remove(catalog)">
+              {{catalog}}
+              <button matChipRemove [attr.aria-label]="'remove ' + catalog">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          </mat-chip-grid>
+          <input placeholder="Include in..." #catalogInput [formControl]="catalogCtrl"
+            [matChipInputFor]="chipGrid" [matAutocomplete]="autoCatalog"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"/>
+          <mat-autocomplete #autoCatalog (optionSelected)="selected($event)">
+            <mat-option *ngFor="let catalog of filteredCatalogs | async" [value]="catalog">
+              {{catalog}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field> <br>
+  
+        <button mat-flat-button (click)="save()" color="primary" [style.width.px]=500>Save</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>  
