@@ -18,11 +18,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ListOfferComponent } from './list-offer/list-offer.component';
 
 @NgModule({
   declarations: [
     OffersComponent,
-    CreateOfferComponent
+    CreateOfferComponent,
+    ListOfferComponent
   ],
   imports: [
     CommonModule,
