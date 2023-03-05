@@ -13,11 +13,13 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { ListCategoryComponent } from './list-category/list-category.component';
 
 @NgModule({
   declarations: [
     CategoriesComponent,
-    CreateCategoryComponent
+    CreateCategoryComponent,
+    ListCategoryComponent
   ],
   imports: [
     CommonModule,
