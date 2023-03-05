@@ -14,6 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DeleteCatalogComponent } from './delete-catalog/delete-catalog.component';
 import { UpdateCatalogComponent } from './update-catalog/update-catalog.component';
 
@@ -36,7 +38,9 @@ import { UpdateCatalogComponent } from './update-catalog/update-catalog.componen
     MatButtonModule,
     MatAutocompleteModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule,
+    MatCheckboxModule
   ]
 })
 export class CatalogsModule { }
