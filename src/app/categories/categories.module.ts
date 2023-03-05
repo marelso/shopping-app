@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { CategoriesRoutingModule } from './categories-routing.module';
 import { CategoriesComponent } from './categories.component';
+import { CreateCategoryComponent } from './create-category/create-category.component';
 
 
 @NgModule({
   declarations: [
-    CategoriesComponent
+    CategoriesComponent,
+    CreateCategoryComponent
   ],
   imports: [
     CommonModule,
