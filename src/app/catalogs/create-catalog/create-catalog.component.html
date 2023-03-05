@@ -1,0 +1,25 @@
+<div class="card center">
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Catalog
+          </mat-panel-title>
+          <mat-panel-description>
+            {{panelOpenState ? 'Currently creating catalog' : 'Click to create a new catalog'}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-form-field appearance="fill" [style.width.px]=500>
+          <mat-label>Choose catalog name</mat-label>
+          <input matInput [(ngModel)]="catalog.name" placeholder="Catalog name">
+        </mat-form-field> <br>
+        <mat-form-field appearance="fill"  [style.width.px]=500>
+          <mat-label>Enter a description for the catalog</mat-label>
+          <textarea matInput [(ngModel)]="catalog.description" placeholder="Catalog description"></textarea>
+        </mat-form-field> <br>
+        <button mat-flat-button color="primary" (click)="doPost()" [style.width.px]=500>Save</button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  
