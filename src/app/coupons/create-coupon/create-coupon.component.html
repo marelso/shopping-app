@@ -1,0 +1,6 @@
+<mat-form-field appearance="outline" style="margin: 19px 30px 0 15px; width: 320px;" [formGroup]="couponForm">
+    <mat-label>Code:</mat-label>
+    <input matInput [(ngModel)]="coupon.code" formControlName="code" placeholder="Type the coupon code...">
+    <mat-error *ngIf="couponForm.get('code').invalid && couponForm.get('code').touched">You must enter a value</mat-error>
+</mat-form-field>
+<button (click)="create()" color="primary" mat-button [disabled]="couponForm.invalid">create</button>  
