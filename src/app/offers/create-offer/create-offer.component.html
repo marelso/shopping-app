@@ -1,1 +1,98 @@
-<p>create-offer works!</p>
+<div class="card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>New offer!</mat-card-title>
+        <mat-card-subtitle>To register a new offer follow the steps below.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-stepper orientation="vertical" linear #stepper>
+          <mat-step [stepControl]="catalogStep">
+            <form [formGroup]="catalogStep">
+              <ng-template matStepLabel>Catalog</ng-template> <br>
+  
+              <mat-form-field class="example-full-width" appearance="fill" [style.width.px]=500>
+                <mat-label>Select any catalog...</mat-label>
+                <input type="text" (input)="filterCatalogs()" matInput formControlName="catalogCtrl" [matAutocomplete]="catalogAuto" required>
+                <mat-autocomplete #catalogAuto="matAutocomplete" [displayWith]="displayFn">
+                  <mat-option *ngFor="let option of filteredCatalogs | async" [value]="option">
+                    {{option.name}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+  
+              <div>
+                <button mat-button color="primary" matStepperNext (click)="get()">Next</button>
+              </div>
+            </form>
+          </mat-step>
+  
+          <mat-step [stepControl]="categoryStep">
+            <form [formGroup]="categoryStep">
+              <ng-template matStepLabel>Categories</ng-template> <br>
+  
+              <mat-form-field appearance="fill">
+                <mat-label>Select any categories</mat-label>
+                <mat-chip-grid required #chipGrid aria-label="Fruit selection">
+                  <mat-chip-row *ngFor="let category of selectedCategories" (removed)="remove(category)">
+                    {{ category }}
+                    <button matChipRemove [attr.aria-label]="'remove ' + category">
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-chip-row>
+                </mat-chip-grid>
+                <input placeholder="Include in..." #categoryInput formControlName="categoryCtrl"
+                  [matChipInputFor]="chipGrid" [matAutocomplete]="categoryAuto"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"/>
+                <mat-autocomplete #categoryAuto="matAutocomplete" (optionSelected)="selected($event)">
+                  <mat-option *ngFor="let category of filteredCategories | async" [value]="category">
+                    {{ category }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <div>
+                <button mat-button color="warn" matStepperPrevious>Back</button>
+                <button mat-button color="primary" matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+  
+          <mat-step>
+            <ng-template matStepLabel>Offer data</ng-template> <br>
+            <p>You can fill in the offer details.</p> <br>
+            <mat-form-field appearance="fill" [style.width.px]=500>
+              <mat-label>Choose offer title</mat-label>
+              <input matInput [(ngModel)]="offer.title" placeholder="Enter offer title...">
+            </mat-form-field> <br>
+  
+            <mat-form-field appearance="fill"  [style.width.px]=500>
+              <mat-label>Enter a description for the offer</mat-label>
+              <textarea matInput [(ngModel)]="offer.description" placeholder="Enter any description for offer..."></textarea>
+            </mat-form-field> <br>
+  
+            <mat-form-field appearance="fill" [style.width.px]=500>
+              <mat-label>Enter any price for the offer</mat-label>
+              <input matInput type="number" placeholder="Offer price..." [(ngModel)]="offer.price">
+            </mat-form-field> <br>
+  
+            <mat-form-field appearance="fill" [style.width.px]=300>
+              <mat-label>Choose any coupon</mat-label>
+              <input placeholder="Select any coupon..." matInput [formControl]="couponCtrl" [matAutocomplete]="autoCoupon">
+              <mat-autocomplete #autoCoupon="matAutocomplete" (optionSelected)="onOptionSelected($event)" [displayWith]="displayCoupon">
+                <mat-option *ngFor="let option of filteredCoupons | async" [value]="option">
+                  {{option.code}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+  
+            <mat-checkbox color="primary" style="margin-left: 40px;" [(ngModel)]="offer.active">{{offer.active ? 'Desable offer' : 'Enable offer'}}</mat-checkbox>
+  
+            <div style="margin-top: 24px;">
+              <button mat-button color="warn" matStepperPrevious>Back</button>
+              <button mat-button color="primary" (click)="post()">Submit offer</button>
+            </div>
+          </mat-step>
+        </mat-stepper>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
