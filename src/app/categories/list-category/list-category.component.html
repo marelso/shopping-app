@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<form class="card" *ngIf="!filteredCategories || filteredCategories.length > 1">
+<form class="card" *ngIf="!filteredCategories || filteredCategories.length > 0">
     <mat-form-field appearance="fill" [style.width.px]=800>
       <mat-label>Search for catalog</mat-label>
       <input #catalogInput type="text"
