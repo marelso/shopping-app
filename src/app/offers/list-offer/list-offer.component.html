@@ -1,4 +1,10 @@
-<form class="card">
+<div class="card" *ngIf="!filteredOffers || filteredOffers.length === 0" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <div style="display: flex; align-items: center;">
+    <mat-icon color="warn">report_problem</mat-icon>
+    <span style="margin-left: 20px; font-size: larger; font-weight: bolder;">There are no offers available at this time.</span>
+  </div>
+</div>
+<form *ngIf="!filteredOffers || filteredOffers.length > 0" class="card">
     <mat-form-field class="example-full-width" appearance="fill" [style.width.px]=800>
         <mat-label>Search for offer</mat-label>
         <input #searchInput type="text"
