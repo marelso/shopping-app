@@ -1,1 +1,84 @@
-<p>list-offer works!</p>
+<form class="card">
+    <mat-form-field class="example-full-width" appearance="fill" [style.width.px]=800>
+        <mat-label>Search for offer</mat-label>
+        <input #searchInput type="text"
+              placeholder="Search by offer name..."
+              aria-label="Insert offer name"
+              matInput
+              [formControl]="searchControl"
+              [matAutocomplete]="searchAuto"
+              (input)="filterOffers()">
+        <mat-autocomplete #searchAuto="matAutocomplete" (optionSelected)="filterOffers()">
+          <mat-option *ngFor="let option of options" [value]="option" (input)="filterOffers()">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>    
+  
+<div class="card" *ngFor="let offer of filteredOffers">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title style="color: #8BC34A">
+          <span> #{{ offer.id }} - {{ offer.title }}</span>
+        </mat-card-title>
+        <mat-card-subtitle>{{ offer.description }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-tab-group>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon>list_alt</mat-icon> <span>       Categories</span>
+            </ng-template> <br>
+  
+            <mat-accordion>
+              <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Click to list categories
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-card *ngFor="let category of offer.categories">
+                  <mat-card-header>
+                    <mat-card-title>#{{ category.id }} {{ category.name }}</mat-card-title>
+                    <mat-card-subtitle>{{ category.description }}</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content style="margin-top: 12px; color: gray;">
+                    <p>Priority: {{ category.priority }}</p>
+                    <p>Catalog id: {{ category.catalogId }}</p>
+                  </mat-card-content>
+                </mat-card>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </mat-tab>
+  
+          <mat-tab [disabled]="!offer.coupon">
+            <ng-template mat-tab-label>
+              <mat-icon>bookmark_border</mat-icon>Coupon
+            </ng-template> <br>
+            <mat-card *ngIf="offer.coupon">
+              <mat-card-header>
+                <mat-card-title>Coupon</mat-card-title>
+              </mat-card-header>
+              <mat-card-content style="color: gray;">
+                <p># {{ offer.coupon.id }}</p>
+                <p>Coupon code: {{ offer.coupon.code }}</p>
+              </mat-card-content>
+            </mat-card>
+          </mat-tab>
+        </mat-tab-group>
+  
+        <h1 style="margin-top: 15px;margin-left: 12px; color:gray;">Price: {{ offer.price | currency }}</h1>
+        <h2 style="margin-left: 12px; color:gray;">
+          <span [ngClass]="{'text-success': offer.active, 'text-danger': !offer.active}">
+            {{ offer.active ? 'Active' : 'Disabled' }}
+          </span>
+        </h2>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="openUpdate(offer)">edit</button>
+        <button mat-button color="warn" (click)="openDelete(offer)">delete</button>
+      </mat-card-actions>
+    </mat-card>
+</div>
+<br>
