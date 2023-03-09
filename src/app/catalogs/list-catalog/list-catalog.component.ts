@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./list-catalog.component.scss']
 })
 export class ListCatalogComponent {
+  public searching: Boolean = false;
   public filteredCatalogs: Catalog[] = [];
   public myControl = new FormControl('');
 
@@ -54,6 +55,7 @@ export class ListCatalogComponent {
   }
 
   filterCatalogs() {
+    this.searching = true;
     if (this.myControl && this.myControl.value) {
       this.filteredCatalogs = this.catalogs.filter(
         catalog => catalog.name.toLowerCase()
@@ -80,6 +82,7 @@ export class ListCatalogComponent {
           });
       }
     });
+    this.searching = false;
   }
 
   openDelete(canBeDeleted: Catalog): void {
@@ -97,5 +100,6 @@ export class ListCatalogComponent {
           });
       }
     });
+    this.searching = false;
   }
 }
